@@ -1,8 +1,7 @@
 from flask import Flask, render_template, redirect, request
 from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys 
 from pymongo import MongoClient
 import uuid
@@ -20,13 +19,9 @@ client = MongoClient(MONGO_URI)
 db = client[DATABASE_NAME]
 collection = db[COLLECTION_NAME]
 
-# Selenium setup
-CHROMEDRIVER_PATH = "chromedriver.exe"
-
 def fetch_trending_topics():
-    service = Service(CHROMEDRIVER_PATH)
     options = Options()
-    driver = webdriver.Chrome(service=service, options=options)
+    driver = webdriver.Chrome(options=options) 
 
     try:
         driver.get("https://twitter.com/login")
