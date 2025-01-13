@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trending Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        h3 {
+            color: #333;
+        }
+
+        p {
+            font-size: 18px;
+            margin-top: 20px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Trending Topics Scraped from Twitter</h1>
+    
+    <p><strong>Date and Time:</strong> {{ timestamp }}</p>
+    
+    <h3>Trending Topics:</h3>
+    <ul>
+        {% for trend in trends %}
+            <li>{{ trend }}</li>
+        {% endfor %}
+    </ul>
+    <h3>Here’s a JSON extract of this record from MongoDB:</h3>
+    <pre>{{ record | tojson(indent=4) }}</pre>
+
+    <form action="/" method="GET">
+        <button type="submit">Run the query again</button>
+    </form>
+</body>
+</html>
